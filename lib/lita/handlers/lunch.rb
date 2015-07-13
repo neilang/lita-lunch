@@ -3,8 +3,8 @@ module Lita
     class Lunch < Handler
       REDIS_KEY = 'lunch'
 
-      route(/^lunch places?\s+add\s+(.+)$/i, :add_suggestion, command: true, help: { 'lunch add PLACE' => 'Add a lunch place' })
-      route(/^lunch places?\s+(?:remove|delete)\s+(.+)$/i, :remove_suggestion, command: true, help: { 'lunch remove PLACE' => 'Remove a known lunch place' })
+      route(/^lunch (?:places?\s+)?add\s+(.+)$/i, :add_suggestion, command: true, help: { 'lunch add PLACE' => 'Add a lunch place' })
+      route(/^lunch (?:places?\s+)?(?:remove|delete)\s+(.+)$/i, :remove_suggestion, command: true, help: { 'lunch remove PLACE' => 'Remove a lunch place' })
       route(/^lunch places?$/i, :list_suggestions, command: true, help: { 'lunch places' => 'List all the known lunch places' })
       route(/^lunch suggest(?:ion)?$/i, :suggest, command: true, help: { 'lunch suggest' => 'Pick somewhere at random' })
       route(/where should (we|i|they) go for lunch/i, :suggest, command: false)

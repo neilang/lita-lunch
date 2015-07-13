@@ -54,6 +54,7 @@ describe Lita::Handlers::Lunch, lita_handler: true do
   end
 
   describe 'adding a place' do
+    it { is_expected.to route_command('lunch add PLACE').to(:add_suggestion) }
     it { is_expected.to route_command('lunch place add PLACE').to(:add_suggestion) }
     it { is_expected.to route_command('lunch places add PLACE').to(:add_suggestion) }
 
@@ -69,6 +70,8 @@ describe Lita::Handlers::Lunch, lita_handler: true do
   end
 
   describe 'removing a place' do
+    it { is_expected.to route_command('lunch remove PLACE').to(:remove_suggestion) }
+    it { is_expected.to route_command('lunch delete PLACE').to(:remove_suggestion) }
     it { is_expected.to route_command('lunch place remove PLACE').to(:remove_suggestion) }
     it { is_expected.to route_command('lunch place delete PLACE').to(:remove_suggestion) }
     it { is_expected.to route_command('lunch places remove PLACE').to(:remove_suggestion) }

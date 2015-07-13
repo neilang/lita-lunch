@@ -32,3 +32,15 @@ Then you can get a lunch suggestion:
 lita lunch suggestion
 where should I go for lunch?
 ```
+
+You can list all stored places:
+
+```
+lita lunch places
+```
+
+And remove unwanted places:
+
+```
+lita lunch places remove the taco hut
+```
