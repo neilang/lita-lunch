@@ -3,7 +3,7 @@
 [![Build Status](https://travis-ci.org/neilang/lita-lunch.png?branch=master)](https://travis-ci.org/neilang/lita-lunch)
 [![Coverage Status](https://coveralls.io/repos/neilang/lita-lunch/badge.png)](https://coveralls.io/r/neilang/lita-lunch)
 
-A lita handler for helping you pick where to go for lunch today!
+A lita handler to help you pick where to go for lunch.
 
 ## Installation
 
@@ -22,15 +22,15 @@ There is no additional configuration.
 First you will to add some of your favorite lunch places:
 
 ```
-lita lunch places add the taco hut
-lita lunch places add Korean BBQ
+lita lunch add the taco hut
+lita lunch add Korean BBQ
 ```
 
 Then you can get a lunch suggestion:
 
 ```
-lita lunch suggestion
 where should I go for lunch?
+lita lunch suggestion
 ```
 
 You can list all stored places:
@@ -42,5 +42,5 @@ lita lunch places
 And remove unwanted places:
 
 ```
-lita lunch places remove the taco hut
+lita lunch remove the taco hut
 ```
