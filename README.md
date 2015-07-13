@@ -3,7 +3,7 @@
 [![Build Status](https://travis-ci.org/neilang/lita-lunch.png?branch=master)](https://travis-ci.org/neilang/lita-lunch)
 [![Coverage Status](https://coveralls.io/repos/neilang/lita-lunch/badge.png)](https://coveralls.io/r/neilang/lita-lunch)
 
-TODO: Add a description of the plugin.
+A lita handler for helping you pick where to go for lunch today!
 
 ## Installation
 
@@ -15,8 +15,20 @@ gem "lita-lunch"
 
 ## Configuration
 
-TODO: Describe any configuration attributes the plugin exposes.
+There is no additional configuration.
 
 ## Usage
 
-TODO: Describe the plugin's features and how to use them.
+First you will to add some of your favorite lunch places:
+
+```
+lita lunch places add the taco hut
+lita lunch places add Korean BBQ
+```
+
+Then you can get a lunch suggestion:
+
+```
+lita lunch suggestion
+where should I go for lunch?
+```
