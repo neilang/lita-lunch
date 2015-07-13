@@ -21,13 +21,15 @@ module Lita
       end
 
       def add_suggestion(response)
-        place = response.matches[0][0] # TODO: ensure this is not blank
+        place = response.matches[0][0].strip
+        return if place.empty?
         redis.rpush(REDIS_KEY, place)
         response.reply t('.added', place: place)
       end
 
       def remove_suggestion(response)
-        place = response.matches[0][0]
+        place = response.matches[0][0].strip
+        return if place.empty?
         result = redis.lrem(REDIS_KEY, 0, place)
         response.reply result.nonzero? ? t('.removed') : t('.unfound')
       end

@@ -29,6 +29,11 @@ describe Lita::Handlers::Lunch, lita_handler: true do
       send_command('lunch suggest')
       expect(replies.last).to eq 'How about that place you like?'
     end
+
+    it 'will not attempt to remove an empty place' do
+      send_command('lunch place remove  ')
+      expect(replies.last).to eq nil
+    end
   end
 
   describe 'list all places' do
@@ -55,6 +60,11 @@ describe Lita::Handlers::Lunch, lita_handler: true do
     it 'will confirm place added' do
       send_command('lunch place add blah')
       expect(replies.last).to eq 'blah has been added'
+    end
+
+    it 'will not add an empty place' do
+      send_command('lunch place add  ')
+      expect(replies.last).to eq nil
     end
   end
 
