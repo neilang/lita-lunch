@@ -6,5 +6,5 @@ en:
         suggest: "How about %{place}?"
         empty: "None added yet"
         added: "%{place} has been added"
-        removed: "Removed"
+        removed: "%{place} has been removed"
         unfound: "You will need to be more specific"

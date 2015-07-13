@@ -77,7 +77,7 @@ describe Lita::Handlers::Lunch, lita_handler: true do
     it 'will confirm place removed' do
       send_command('lunch place add blah')
       send_command('lunch place remove blah')
-      expect(replies.last).to eq 'Removed'
+      expect(replies.last).to eq 'blah has been removed'
     end
 
     it 'will confirm if place cannot be found' do

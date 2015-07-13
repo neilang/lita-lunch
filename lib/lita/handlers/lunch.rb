@@ -31,7 +31,7 @@ module Lita
         place = response.matches[0][0].strip
         return if place.empty?
         result = redis.lrem(REDIS_KEY, 0, place)
-        response.reply result.nonzero? ? t('.removed') : t('.unfound')
+        response.reply result.nonzero? ? t('.removed', place: place) : t('.unfound')
       end
 
       def reset!
