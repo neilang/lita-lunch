@@ -1,0 +1,10 @@
+en:
+  lita:
+    handlers:
+      lunch:
+        fallback: "that place you like"
+        suggest: "How about %{place}?"
+        empty: "None added yet"
+        added: "%{place} has been added"
+        removed: "Removed"
+        unfound: "You will need to be more specific"
