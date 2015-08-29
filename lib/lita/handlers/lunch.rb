@@ -22,8 +22,8 @@ module Lita
       def add_suggestion(response)
         place = response.matches[0][0].strip
         return if place.empty?
-        redis.sadd(REDIS_KEY, place)
-        response.reply t('.added', place: place)
+        result = redis.sadd(REDIS_KEY, place)
+        response.reply result ? t('.added', place: place) : t('.duplicate', place: place)
       end
 
       def remove_suggestion(response)

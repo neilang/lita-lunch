@@ -75,6 +75,12 @@ describe Lita::Handlers::Lunch, lita_handler: true do
       send_command('lunch place add  ')
       expect(replies.last).to eq nil
     end
+
+    it 'will not add a duplicate place' do
+      send_command('lunch place add BurgerCzar')
+      send_command('lunch place add BurgerCzar')
+      expect(replies.last).to eq 'I already know about BurgerCzar'
+    end
   end
 
   describe 'removing a place' do
