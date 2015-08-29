@@ -46,10 +46,18 @@ describe Lita::Handlers::Lunch, lita_handler: true do
     end
 
     it 'lists all the known places' do
-      send_command('lunch place add foo')
       send_command('lunch place add bar')
+      send_command('lunch place add foo')
       send_command('lunch places')
-      expect(replies.last).to eq "foo\nbar"
+      expect(replies.last).to eq "bar\nfoo"
+    end
+
+    it 'sorts the places it knows' do
+      send_command('lunch place add Zoo')
+      send_command('lunch place add Avec')
+      send_command('lunch place add Longs')
+      send_command('lunch places')
+      expect(replies.last).to eq "Avec\nLongs\nZoo"
     end
   end
 
