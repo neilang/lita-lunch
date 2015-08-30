@@ -10,28 +10,27 @@ module Lita
       route(/where should (we|i|they) go for lunch/i, :suggest, command: false)
 
       def suggest(response)
-        index = Random.rand(redis.llen(REDIS_KEY).nonzero? || 1)
-        random = redis.lindex(REDIS_KEY, index) || t('.fallback')
+        random = redis.srandmember(REDIS_KEY) || t('.fallback')
         response.reply t('.suggest', place: random)
       end
 
       def list_suggestions(response)
-        values = redis.lrange(REDIS_KEY, 0, -1)
-        response.reply values.size > 0 ? values.join("\n") : t('.empty')
+        values = redis.smembers(REDIS_KEY)
+        response.reply values.size > 0 ? values.sort.join("\n") : t('.empty')
       end
 
       def add_suggestion(response)
         place = response.matches[0][0].strip
         return if place.empty?
-        redis.rpush(REDIS_KEY, place)
-        response.reply t('.added', place: place)
+        result = redis.sadd(REDIS_KEY, place)
+        response.reply result ? t('.added', place: place) : t('.duplicate', place: place)
       end
 
       def remove_suggestion(response)
         place = response.matches[0][0].strip
         return if place.empty?
-        result = redis.lrem(REDIS_KEY, 0, place)
-        response.reply result.nonzero? ? t('.removed', place: place) : t('.unfound')
+        result = redis.srem(REDIS_KEY, place)
+        response.reply result ? t('.removed', place: place) : t('.unfound')
       end
 
       def reset!

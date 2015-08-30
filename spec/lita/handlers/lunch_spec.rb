@@ -46,10 +46,18 @@ describe Lita::Handlers::Lunch, lita_handler: true do
     end
 
     it 'lists all the known places' do
-      send_command('lunch place add foo')
       send_command('lunch place add bar')
+      send_command('lunch place add foo')
       send_command('lunch places')
-      expect(replies.last).to eq "foo\nbar"
+      expect(replies.last).to eq "bar\nfoo"
+    end
+
+    it 'sorts the places it knows' do
+      send_command('lunch place add Zoo')
+      send_command('lunch place add Avec')
+      send_command('lunch place add Longs')
+      send_command('lunch places')
+      expect(replies.last).to eq "Avec\nLongs\nZoo"
     end
   end
 
@@ -66,6 +74,12 @@ describe Lita::Handlers::Lunch, lita_handler: true do
     it 'will not add an empty place' do
       send_command('lunch place add  ')
       expect(replies.last).to eq nil
+    end
+
+    it 'will not add a duplicate place' do
+      send_command('lunch place add BurgerCzar')
+      send_command('lunch place add BurgerCzar')
+      expect(replies.last).to eq 'I already know about BurgerCzar'
     end
   end
 
